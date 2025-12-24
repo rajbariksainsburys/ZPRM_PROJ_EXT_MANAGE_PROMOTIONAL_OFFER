@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic">
+	<!-- This extension point can be used to add fields to actions -->
+	<!--<ObjectPageHeaderActionButton xmlns="sap.uxap" id="HeaderActionCopy_clone" visible="{= ${Content>/NavButtonsEnabled} === false}" hideText="{= ${Content>/NavButtonsEnabled} === true}" hideIcon="true" text="{i18n>copyoffer.Button}" press="onCopyOfferPress"/> -->
+</core:FragmentDefinition>

@@ -1,0 +1,37 @@
+specVersion: "2.6"
+metadata:
+  name: customer.zprmprojextmanagepromotionaloffer
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /sap
+            url: http://sapcarhttpsdev:44300
+            client: "100"
+            destination: DCA100
+          - path: /resources/retail/ddf/pmr/lib
+            destination: DCA100
+            url: http://sapcarhttpsdev:44300
+            client: "100"
+            pathPrefix: /sap/bc/ui5_ui5/sap/ddfpmrlib
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: "1.120.23"
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: customer.zprmprojextmanagepromotionaloffer
+        ui5Theme: sap_fiori_3        
