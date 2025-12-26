@@ -4,11 +4,11 @@
   "description": "",
   "devDependencies": {
     "@sap/ui5-builder-webide-extension": "1.0.x",
-    "@ui5/cli": "^3.0.0",
     "@sap/ux-ui5-tooling": "1",
+    "@ui5/cli": "^4.0.38",
     "rimraf": "3.0.2"
   },
-  "scripts": {    
+  "scripts": {
     "build_old": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo",
     "start": "fiori run --open \"index.html?sap-client=100&sap-ui-xx-viewCache=false#title-display\"",
     "build": "ui5 build -a --clean-dest --include-task=generateCachebusterInfo",
