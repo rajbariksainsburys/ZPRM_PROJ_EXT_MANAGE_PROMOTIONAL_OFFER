@@ -1257,6 +1257,40 @@ sap.ui.define([
 		//            this.getRouter().attachRouteMatched(this.routeMatched, this);
 		//        }.bind(this));
 		//    }
+
+
+
+		//CONFLICT CHECK EXTENSION CODE//
+
+
+		onPressExecuteConflictCheck: function () {
+
+			
+
+			if (!this._oConflictDialog) {
+				this._oConflictDialog = sap.ui.xmlfragment(
+					this.getView().getId(),
+					"customer.zprmprojextmanagepromotionaloffer.view.ConflictCheckDialog",
+					this
+				);
+				this.getView().addDependent(this._oConflictDialog);
+			};
+
+
+			// Pass the payload to backend for retrieving the offer details//
+
+
+
+			
+
+			this._oConflictDialog.open();
+		},
+
+		onCloseDialog: function () {
+			if (this._oConflictDialog) {
+				this._oConflictDialog.close();
+			}
+		},
 	});
 	return q;
 });

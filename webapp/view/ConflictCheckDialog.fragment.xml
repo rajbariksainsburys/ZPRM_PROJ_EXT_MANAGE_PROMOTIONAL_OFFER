@@ -1,0 +1,165 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table">
+
+    <Dialog
+        id="conflictCheckDialog"
+        title="Promotion Conflicts"
+        contentWidth="95%"
+        contentHeight="600px"
+        resizable="true"
+        draggable="true">
+
+        <VBox fitContainer="true">
+
+            <!-- 🔹 Top-right actions -->
+            <HBox
+                width="100%"
+                justifyContent="End"
+                class="sapUiSmallMarginEnd sapUiSmallMarginTop sapUiSmallMarginBottom">
+
+                <Button
+                    text="Expand All"
+                    icon="sap-icon://expand-group"
+                    press=".onExpandAll"/>
+
+                <Button
+                    text="Collapse All"
+                    icon="sap-icon://collapse-group"
+                    class="sapUiTinyMarginBegin"
+                    press=".onCollapseAll"/>
+
+                <Button
+                    text="Export to Excel"
+                    icon="sap-icon://excel-attachment"
+                    class="sapUiTinyMarginBegin"
+                    press=".onExcelExport"/>
+            </HBox>
+
+            <!-- 🔹 TreeTable -->
+            <VBox
+                width="100%"
+                class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+
+                <table:TreeTable
+    id="conflictTreeTable"
+    rows="{
+        path: '/Rules',
+        model: 'tree',
+        parameters: { arrayNames: ['nodes'] }
+    }"
+    selectionMode="None"
+    enableSelectAll="false"
+    
+    width="100%">
+
+
+                    <table:columns>
+
+    <!-- Hierarchy -->
+    <table:Column width="28rem">
+        <Label text="Hierarchy"/>
+        <table:template>
+            <Text text="{tree>name}" wrapping="false"/>
+        </table:template>
+    </table:Column>
+
+    <!-- Owner -->
+    <table:Column width="180px">
+        <Label text="Owner"/>
+        <table:template>
+            <Text text="{tree>Owner}"/>
+        </table:template>
+    </table:Column>
+
+   <table:Column width="100px">
+    <Label text="OverRide"/>
+    <table:template templateShareable="false">
+        <CheckBox
+            selected="{tree>selected}"
+            select=".onNodeSelect"/>
+    </table:template>
+</table:Column>
+
+
+<table:Column width="120px">
+    <Label text="Run ID"/>
+    <table:template>
+        <Text text="{tree>RunId}"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="120px">
+    <Label text="Rule Id"/>
+    <table:template>
+        <Text text="{tree>RuleId}"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="160px">
+    <Label text="Type of Message"/>
+    <table:template>
+        <Text text="{tree>MessageType}"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="140px">
+    <Label text="Created By"/>
+    <table:template>
+        <Text text="{tree>CreatedBy}"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="220px">
+    <Label text="Reason"/>
+    <table:template>
+        <Text text="{tree>Reason}" wrapping="true"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="190px">
+    <Label text="Creation Time Stamp"/>
+    <table:template>
+        <Text text="{tree>CreatedAt}"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="160px">
+    <Label text="Approved By"/>
+    <table:template>
+        <Text text="{tree>ApprovedBy}"/>
+    </table:template>
+</table:Column>
+
+<table:Column width="190px">
+    <Label text="Approved Time Stamp"/>
+    <table:template>
+        <Text text="{tree>ApprovedAt}"/>
+    </table:template>
+</table:Column>
+
+
+</table:columns>
+
+                </table:TreeTable>
+
+            </VBox>
+
+        </VBox>
+
+        <!-- 🔹 Footer -->
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="Retrigger Conflict Check" press=".onRetrigger"/>
+                <Button text="Approve" type="Accept" press=".onApprove"/>
+                <Button text="Reject" type="Reject" press=".onReject"/>
+                <Button text="Request Override" press=".onRequest"/>
+                <Button text="Abort" type="Emphasized" press=".onCloseDialog"/>
+                <Button text="Show Log" press=".onShowLog"/>
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>
